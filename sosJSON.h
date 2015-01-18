@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 Apiary Inc. All rights reserved.
 //
 
-#ifndef SOS_JSON_h
-#define SOS_JSON_h
+#ifndef SOS_JSON_H
+#define SOS_JSON_H
 
 #include "sos.h"
 
