@@ -207,9 +207,8 @@ const sos::Bases& sos::Base::array() const
 }
 
 sos::Null::Null()
-{
-    type = NullType;
-}
+: Base(NullType)
+{}
 
 sos::String::String(std::string string_)
 {
