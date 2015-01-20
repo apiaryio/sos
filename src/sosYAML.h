@@ -1,19 +1,19 @@
 //
-//  sosJSON.h
+//  sosYAML.h
 //  sos
 //
-//  Created by Pavan Kumar Sunkara on 11/01/15.
+//  Created by Pavan Kumar Sunkara on 12/01/15.
 //  Copyright (c) 2015 Apiary Inc. All rights reserved.
 //
 
-#ifndef SOS_JSON_H
-#define SOS_JSON_H
+#ifndef SOS_YAML_H
+#define SOS_YAML_H
 
 #include "sos.h"
 
 namespace sos {
 
-    struct SerializeJSON : public Serialize {
+    struct SerializeYAML : public Serialize {
 
         void indent(int level, std::ostream& os) {
 
@@ -47,57 +47,46 @@ namespace sos {
 
         void array(const Base& node, std::ostream& os, int level) {
 
-            os << "[";
+            os << "\n";
 
             if (!node.array().empty()) {
 
-                os << "\n";
                 size_t i = 0;
 
                 for (Bases::const_iterator it = node.array().begin(); it != node.array().end(); ++i, ++it) {
 
                     if (i > 0 && i < node.array().size()) {
-                        os << ",\n";
+                        os << "\n";
                     }
 
-                    indent(level + 1, os);
+                    indent(level, os);
+                    os << "- ";
                     process(*it, os, level + 1);
                 }
-
-                os << "\n";
-                indent(level, os);
             }
-
-            os << "]";
         }
 
         void object(const Base& node, std::ostream& os, int level) {
 
-            os << "{";
+            os << "\n";
 
-            if (!node.object().empty()) {
+            if (!node.keys.empty()) {
 
-                os << "\n";
                 size_t i = 0;
 
                 for (Keys::const_iterator it = node.keys.begin(); it != node.keys.end(); ++i, ++it) {
 
                     if (i > 0 && i < node.keys.size()) {
-                        os << ",\n";
+                        os << "\n";
                     }
-
-                    indent(level + 1, os);
-                    string(*it, os);
-
+                    
+                    indent(level, os);
+                    os << *it;
+                    
                     os << ": ";
                     process(node.object().at(*it), os, level + 1);
                 }
-
-                os << "\n";
-                indent(level, os);
             }
-
-            os << "}";
         }
     };
 }

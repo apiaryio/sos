@@ -21,6 +21,7 @@ sos::Base::Base(const sos::Base& rhs)
     this->string = rhs.string;
     this->number = rhs.number;
     this->boolean = rhs.boolean;
+    this->keys = rhs.keys;
 
     this->m_object.reset(::new KeyValues(*rhs.m_object.get()));
     this->m_array.reset(::new Bases(*rhs.m_array.get()));
@@ -32,6 +33,7 @@ sos::Base& sos::Base::operator=(const sos::Base &rhs)
     this->string = rhs.string;
     this->number = rhs.number;
     this->boolean = rhs.boolean;
+    this->keys = rhs.keys;
 
     this->m_object.reset(::new KeyValues(*rhs.m_object.get()));
     this->m_array.reset(::new Bases(*rhs.m_array.get()));
