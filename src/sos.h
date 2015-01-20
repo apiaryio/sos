@@ -14,6 +14,7 @@
 #include <map>
 #include <ostream>
 #include <algorithm>
+#include <memory>
 
 namespace sos {
 
