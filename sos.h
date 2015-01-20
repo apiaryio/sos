@@ -141,155 +141,22 @@ namespace sos {
 
         virtual void indent(int level, std::ostream& os) = 0;
     };
-}
 
-sos::Base::Base(Base::Type type_, std::string string_, double number_, bool boolean_)
-: type(type_), string(string_), number(number_), boolean(boolean_)
-{
-    m_object.reset(::new KeyValues);
-    m_array.reset(::new Bases);
-}
+    /**
+     *  \brief  Escape every double quote in input string.
+     *  \param  input   A string to escape its double quotes.
+     *  \return A new string with double quotes escaped.
+     */
+    std::string escapeDoubleQuotes(const std::string& input);
 
-sos::Base::Base(const sos::Base& rhs)
-{
-    this->type = rhs.type;
-    this->string = rhs.string;
-    this->number = rhs.number;
-    this->boolean = rhs.boolean;
-
-    this->m_object.reset(::new KeyValues(*rhs.m_object.get()));
-    this->m_array.reset(::new Bases(*rhs.m_array.get()));
-}
-
-sos::Base& sos::Base::operator=(const sos::Base &rhs)
-{
-    this->type = rhs.type;
-    this->string = rhs.string;
-    this->number = rhs.number;
-    this->boolean = rhs.boolean;
-
-    this->m_object.reset(::new KeyValues(*rhs.m_object.get()));
-    this->m_array.reset(::new Bases(*rhs.m_array.get()));
-
-    return *this;
-}
-
-sos::KeyValues& sos::Base::object()
-{
-    if (!m_object.get())
-        throw "no object key-values set";
-
-    return *m_object;
-}
-
-const sos::KeyValues& sos::Base::object() const
-{
-    if (!m_object.get())
-        throw "no object key-values set";
-
-    return *m_object;
-}
-
-sos::Bases& sos::Base::array()
-{
-    if (!m_array.get())
-        throw "no array values set";
-
-    return *m_array;
-}
-
-const sos::Bases& sos::Base::array() const
-{
-    if (!m_array.get())
-        throw "no array values set";
-
-    return *m_array;
-}
-
-sos::Null::Null()
-: Base(NullType)
-{}
-
-sos::String::String(std::string string_)
-{
-    type = StringType;
-    string = string_;
-}
-
-sos::Number::Number(double number_)
-{
-    type = NumberType;
-    number = number_;
-}
-
-sos::Boolean::Boolean(bool boolean_)
-{
-    type = BooleanType;
-    boolean = boolean_;
-}
-
-sos::Array::Array()
-: Base(ArrayType)
-{}
-
-void sos::Array::push(const sos::Base& value)
-{
-    array().push_back(value);
-}
-
-void sos::Array::set(const size_t index, const sos::Base& value)
-{
-    if (array().size() <= index)
-        throw "not enough array values set";
-
-    array().at(index) = value;
-}
-
-sos::Object::Object()
-: Base(ObjectType)
-{}
-
-void sos::Object::set(const std::string& key, const sos::Base& value)
-{
-    object().operator[](key) = value;
-}
-
-sos::Serialize::Serialize()
-{}
-
-void sos::Serialize::process(const Base& root, std::ostream& os, int level)
-{
-    sos::Base::Type type = root.type;
-
-    switch (type) {
-
-        case Base::NullType:
-            null(os);
-            break;
-
-        case Base::StringType:
-            string(root.string, os);
-            break;
-
-        case Base::NumberType:
-            number(root.number, os);
-            break;
-
-        case Base::BooleanType:
-            boolean(root.boolean, os);
-            break;
-
-        case Base::ArrayType:
-            array(root, os, level);
-            break;
-
-        case Base::ObjectType:
-            object(root, os, level);
-            break;
-
-        default:
-            break;
-    }
+    /**
+     *  \brief  Escape new lines in input string.
+     *  \param  input   A string to escape its new lines.
+     *  \return A new string with lines escaped.
+     *
+     *  This function replaces all occurences of "\n" with "\\n".
+     */
+    std::string escapeNewlines(const std::string& input);
 }
 
 #endif

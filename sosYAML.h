@@ -29,7 +29,10 @@ namespace sos {
 
         void string(const std::string& node, std::ostream& os) {
 
-            os << "\"" << node << "\"";
+            std::string normalized = escapeDoubleQuotes(node);
+            normalized = escapeNewlines(normalized);
+
+            os << "\"" << normalized << "\"";
         }
 
         void number(double node, std::ostream& os) {
