@@ -116,6 +116,10 @@ sos::Object::Object()
 
 void sos::Object::set(const std::string& key, const sos::Base& value)
 {
+    if (std::find(keys.begin(), keys.end(), key) != keys.end())
+        throw "key already present in the object";
+
+    keys.push_back(key);
     object().operator[](key) = value;
 }
 

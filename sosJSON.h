@@ -80,17 +80,17 @@ namespace sos {
                 os << "\n";
                 size_t i = 0;
 
-                for (KeyValues::const_iterator it = node.object().begin(); it != node.object().end(); ++i, ++it) {
+                for (Keys::const_iterator it = node.keys.begin(); it != node.keys.end(); ++i, ++it) {
 
-                    if (i > 0 && i < node.object().size()) {
+                    if (i > 0 && i < node.keys.size()) {
                         os << ",\n";
                     }
 
                     indent(level + 1, os);
-                    string(it->first, os);
+                    string(*it, os);
 
                     os << ": ";
-                    process(it->second, os, level + 1);
+                    process(node.object().at(*it), os, level + 1);
                 }
 
                 os << "\n";

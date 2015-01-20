@@ -13,6 +13,7 @@
 #include <vector>
 #include <map>
 #include <ostream>
+#include <algorithm>
 
 namespace sos {
 
@@ -21,6 +22,9 @@ namespace sos {
 
     /** Key-value pairs (object) */
     typedef std::map<std::string, Base> KeyValues;
+
+    /** List of keys for object (for deterministic output) */
+    typedef std::vector<std::string> Keys;
 
     /** Array of values */
     typedef std::vector<Base> Bases;
@@ -55,6 +59,8 @@ namespace sos {
         /** Object value */
         KeyValues& object();
         const KeyValues& object() const;
+
+        Keys keys;
 
         /** Array value */
         Bases& array();
