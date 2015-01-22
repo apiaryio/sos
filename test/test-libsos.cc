@@ -64,22 +64,22 @@ TEST_CASE("Serialize YAML", "[sos][yaml]")
     "username: \"pksunkara\"\n"\
     "age: 25\n"\
     "height: 1.75\n"\
-    "interests: \n"\
+    "interests:\n"\
     "  - \"cricket\"\n"\
-    "  - \n"\
+    "  -\n"\
     "    - \"algorithms\"\n"\
     "    - \"programming\"\n"\
-    "contact: \n"\
+    "contact:\n"\
     "  facebook: true\n"\
     "  linkedin: false\n"\
     "  dribble: null\n"\
-    "  github: \n"\
+    "  github:\n"\
     "    username: \"pksunkara\"\n"\
-    "    orgs: \n"\
-    "      - \n"\
+    "    orgs:\n"\
+    "      -\n"\
     "        id: \"apiaryio\"\n"\
     "        members: 20\n"\
-    "      - \n"\
+    "      -\n"\
     "        id: \"flatiron\"\n"\
     "        members: 10";
 

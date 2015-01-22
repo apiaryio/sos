@@ -24,7 +24,7 @@ namespace sos {
 
         void null(std::ostream& os) {
 
-            os << "null";
+            os << " " << "null";
         }
 
         void string(const std::string& node, std::ostream& os) {
@@ -32,22 +32,24 @@ namespace sos {
             std::string normalized = escapeDoubleQuotes(node);
             normalized = escapeNewlines(normalized);
 
-            os << "\"" << normalized << "\"";
+            os << " " << "\"" << normalized << "\"";
         }
 
         void number(double node, std::ostream& os) {
 
-            os << node;
+            os << " " << node;
         }
 
         void boolean(bool node, std::ostream& os) {
 
-            os << (node ? "true" : "false");
+            os << " " << (node ? "true" : "false");
         }
 
         void array(const Base& node, std::ostream& os, int level) {
 
-            os << "\n";
+            if (level > 0) {
+                os << "\n";
+            }
 
             if (!node.array().empty()) {
 
@@ -60,7 +62,7 @@ namespace sos {
                     }
 
                     indent(level, os);
-                    os << "- ";
+                    os << "-";
                     process(*it, os, level + 1);
                 }
             }
@@ -85,7 +87,7 @@ namespace sos {
                     indent(level, os);
                     os << *it;
                     
-                    os << ": ";
+                    os << ":";
                     process(node.object().at(*it), os, level + 1);
                 }
             }
