@@ -30,26 +30,26 @@ namespace sos {
     /** Array of values */
     typedef std::vector<Base> Bases;
 
-    /** Value base structure */
+    /** Base class for values */
     class Base {
     public:
 
         /** Enum for Type of the value */
         enum Type {
-            NullType = 1, // Null
+            UndefinedType = 0,
+            NullType,     // Null
             StringType,   // A string
             NumberType,   // A number
             BooleanType,  // A boolean value
             ArrayType,    // An array
-            ObjectType,   // An object
-            UndefinedType = 0
+            ObjectType    // An object
         };
 
         /** Type of the value */
         Type type;
 
         /** String value */
-        std::string string;
+        std::string str;
 
         /** Number value */
         double number;
@@ -68,7 +68,7 @@ namespace sos {
         const Bases& array() const;
 
         /** Constructor */
-        Base(Type type_ = UndefinedType, std::string string_ = "", double number_ = 0, bool boolean_ = false);
+        Base(Type type_ = UndefinedType);
 
         /** Copy constructor */
         Base(const Base& rhs);
@@ -131,22 +131,23 @@ namespace sos {
         void set(const std::string& key, const Base& value);
     };
 
+    /** Base class for serializers */
     struct Serialize {
 
         /** Constructor */
         Serialize();
 
-        /** Process */
-        void process(const Base& node, std::ostream& os, int level = 0);
+        /** Process the given value with the serializer logic */
+        void process(const Base& value, std::ostream& os, size_t level = 0);
 
         virtual void null(std::ostream& os) = 0;
-        virtual void string(const std::string& node, std::ostream& os) = 0;
-        virtual void number(double node, std::ostream& os) = 0;
-        virtual void boolean(bool node, std::ostream& os) = 0;
-        virtual void array(const Base& node, std::ostream& os, int level) = 0;
-        virtual void object(const Base& node, std::ostream& os, int level) = 0;
+        virtual void string(const std::string& value, std::ostream& os) = 0;
+        virtual void number(double value, std::ostream& os) = 0;
+        virtual void boolean(bool value, std::ostream& os) = 0;
+        virtual void array(const Base& value, std::ostream& os, size_t level) = 0;
+        virtual void object(const Base& value, std::ostream& os, size_t level) = 0;
 
-        virtual void indent(int level, std::ostream& os) = 0;
+        virtual void indent(size_t level, std::ostream& os) = 0;
     };
 
     /**

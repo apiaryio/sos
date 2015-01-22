@@ -48,8 +48,8 @@ TEST_CASE("Serailize JSON", "[sos][json]")
     "  }\n"\
     "}";
 
-    sos::SerializeJSON serializer = sos::SerializeJSON();
-    sos::Object root = sos::Object();
+    sos::SerializeJSON serializer;
+    sos::Object root;
 
     build(root);
     serializer.process(root, output);
@@ -83,8 +83,8 @@ TEST_CASE("Serialize YAML", "[sos][yaml]")
     "        id: \"flatiron\"\n"\
     "        members: 10";
 
-    sos::SerializeYAML serializer = sos::SerializeYAML();
-    sos::Object root = sos::Object();
+    sos::SerializeYAML serializer;
+    sos::Object root;
 
     build(root);
     serializer.process(root, output);

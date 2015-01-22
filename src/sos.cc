@@ -8,8 +8,8 @@
 
 #include "sos.h"
 
-sos::Base::Base(Base::Type type_, std::string string_, double number_, bool boolean_)
-: type(type_), string(string_), number(number_), boolean(boolean_)
+sos::Base::Base(Base::Type type_)
+: type(type_)
 {
     m_object.reset(::new KeyValues);
     m_array.reset(::new Bases);
@@ -18,7 +18,7 @@ sos::Base::Base(Base::Type type_, std::string string_, double number_, bool bool
 sos::Base::Base(const sos::Base& rhs)
 {
     this->type = rhs.type;
-    this->string = rhs.string;
+    this->str = rhs.str;
     this->number = rhs.number;
     this->boolean = rhs.boolean;
     this->keys = rhs.keys;
@@ -30,7 +30,7 @@ sos::Base::Base(const sos::Base& rhs)
 sos::Base& sos::Base::operator=(const sos::Base &rhs)
 {
     this->type = rhs.type;
-    this->string = rhs.string;
+    this->str = rhs.str;
     this->number = rhs.number;
     this->boolean = rhs.boolean;
     this->keys = rhs.keys;
@@ -77,10 +77,10 @@ sos::Null::Null()
 : Base(NullType)
 {}
 
-sos::String::String(std::string string_)
+sos::String::String(std::string str_)
 {
     type = StringType;
-    string = string_;
+    str = str_;
 }
 
 sos::Number::Number(double number_)
@@ -128,7 +128,7 @@ void sos::Object::set(const std::string& key, const sos::Base& value)
 sos::Serialize::Serialize()
 {}
 
-void sos::Serialize::process(const Base& root, std::ostream& os, int level)
+void sos::Serialize::process(const Base& root, std::ostream& os, size_t level)
 {
     sos::Base::Type type = root.type;
 
@@ -139,7 +139,7 @@ void sos::Serialize::process(const Base& root, std::ostream& os, int level)
             break;
 
         case Base::StringType:
-            string(root.string, os);
+            string(root.str, os);
             break;
 
         case Base::NumberType:

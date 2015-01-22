@@ -15,49 +15,49 @@ namespace sos {
 
     struct SerializeYAML : public Serialize {
 
-        void indent(int level, std::ostream& os) {
+        virtual void indent(size_t level, std::ostream& os) {
 
-            for (int i = 0; i < level; ++i) {
+            for (size_t i = 0; i < level; ++i) {
                 os << "  ";
             }
         }
 
-        void null(std::ostream& os) {
+        virtual void null(std::ostream& os) {
 
             os << " " << "null";
         }
 
-        void string(const std::string& node, std::ostream& os) {
+        virtual void string(const std::string& value, std::ostream& os) {
 
-            std::string normalized = escapeDoubleQuotes(node);
+            std::string normalized = escapeDoubleQuotes(value);
             normalized = escapeNewlines(normalized);
 
             os << " " << "\"" << normalized << "\"";
         }
 
-        void number(double node, std::ostream& os) {
+        virtual void number(double value, std::ostream& os) {
 
-            os << " " << node;
+            os << " " << value;
         }
 
-        void boolean(bool node, std::ostream& os) {
+        virtual void boolean(bool value, std::ostream& os) {
 
-            os << " " << (node ? "true" : "false");
+            os << " " << (value ? "true" : "false");
         }
 
-        void array(const Base& node, std::ostream& os, int level) {
+        virtual void array(const Base& value, std::ostream& os, size_t level) {
 
             if (level > 0) {
                 os << "\n";
             }
 
-            if (!node.array().empty()) {
+            if (!value.array().empty()) {
 
                 size_t i = 0;
 
-                for (Bases::const_iterator it = node.array().begin(); it != node.array().end(); ++i, ++it) {
+                for (Bases::const_iterator it = value.array().begin(); it != value.array().end(); ++i, ++it) {
 
-                    if (i > 0 && i < node.array().size()) {
+                    if (i > 0 && i < value.array().size()) {
                         os << "\n";
                     }
 
@@ -68,19 +68,19 @@ namespace sos {
             }
         }
 
-        void object(const Base& node, std::ostream& os, int level) {
+        virtual void object(const Base& value, std::ostream& os, size_t level) {
 
             if (level > 0) {
                 os << "\n";
             }
 
-            if (!node.keys.empty()) {
+            if (!value.keys.empty()) {
 
                 size_t i = 0;
 
-                for (Keys::const_iterator it = node.keys.begin(); it != node.keys.end(); ++i, ++it) {
+                for (Keys::const_iterator it = value.keys.begin(); it != value.keys.end(); ++i, ++it) {
 
-                    if (i > 0 && i < node.keys.size()) {
+                    if (i > 0 && i < value.keys.size()) {
                         os << "\n";
                     }
                     
@@ -88,7 +88,7 @@ namespace sos {
                     os << *it;
                     
                     os << ":";
-                    process(node.object().at(*it), os, level + 1);
+                    process(value.object().at(*it), os, level + 1);
                 }
             }
         }

@@ -9,8 +9,7 @@ void build(sos::Object& root) {
     root.set("age", sos::Number(25));
     root.set("height", sos::Number(1.75));
 
-    sos::Array interests = sos::Array();
-    sos::Array computer = sos::Array();
+    sos::Array interests, computer;
 
     computer.push(sos::String("algorithms"));
     computer.push(sos::String("programming"));
@@ -20,17 +19,15 @@ void build(sos::Object& root) {
 
     root.set("interests", interests);
 
-    sos::Object social = sos::Object();
+    sos::Object social, github;
 
     social.set("facebook", sos::Boolean(true));
     social.set("linkedin", sos::Boolean(false));
     social.set("dribble", sos::Null());
 
-    sos::Object github = sos::Object();
-
     github.set("username", sos::String("pksunkara"));
 
-    sos::Array orgs = sos::Array();
+    sos::Array orgs;
 
     sos::Object apiary = sos::Object();
     sos::Object flatiron = sos::Object();

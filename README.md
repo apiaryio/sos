@@ -1,6 +1,6 @@
-# Simple c++ Object Serialization (SOS) [![Build Status](https://travis-ci.org/apiaryio/sos.svg?branch=master)](https://travis-ci.org/apiaryio/sos)
+# Simple C++ Object Serialization (SOS) [![Build Status](https://travis-ci.org/apiaryio/sos.svg?branch=master)](https://travis-ci.org/apiaryio/sos)
 
-A minimal library to serialize c++ objects into JSON-like objects. Build a c++ object using the `sos::*` classes and serialize them into JSON or YAML. You can also provide your own custom serializers.
+A minimal library to serialize C++ objects into JSON-like objects. Build a C++ object using the `sos::*` classes and serialize them into JSON or YAML. You can also provide your own custom serializers.
 
 ## Usage
 
@@ -11,7 +11,7 @@ A minimal library to serialize c++ objects into JSON-like objects. Build a c++ o
 int main(int argc, char** argv)
 {
     // Build an object
-    sos::Object root = sos::Object();
+    sos::Object root;
 
     // Build a string and add it to a key in the object
     root.set("username", sos::String("pksunkara"));
@@ -26,7 +26,7 @@ int main(int argc, char** argv)
     root.set("email", sos::Null());
 
     // Build an array
-    sos::Array interests = sos::Array();
+    sos::Array interests;
 
     // Push items into the array
     interests.push(sos::String("cricket"));
@@ -39,7 +39,7 @@ int main(int argc, char** argv)
     root.set("interests", interests);
 
     // Build the serializer
-    sos::SerializeJSON serializer = sos::SerializeJSON();
+    sos::SerializeJSON serializer;
 
     // Output the serialization
     serializer.process(root, std::cout);
