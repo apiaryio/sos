@@ -1,4 +1,4 @@
-# Simple c++ Object Serialization (SOS)
+# Simple c++ Object Serialization (SOS) [![Build Status](https://travis-ci.org/apiaryio/sos.svg?branch=master)](https://travis-ci.org/apiaryio/sos)
 
 A minimal library to serialize c++ objects into JSON-like objects. Build a c++ object using the `sos::*` classes and serialize them into JSON or YAML. You can also provide your own custom serializers.
 
