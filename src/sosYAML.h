@@ -68,7 +68,9 @@ namespace sos {
 
         void object(const Base& node, std::ostream& os, int level) {
 
-            os << "\n";
+            if (level > 0) {
+                os << "\n";
+            }
 
             if (!node.keys.empty()) {
 

@@ -1,3 +1,6 @@
+#ifndef SOS_TEST_H
+#define SOS_TEST_H
+
 #include "sos.h"
 
 void build(sos::Object& root) {
@@ -45,3 +48,5 @@ void build(sos::Object& root) {
     social.set("github", github);
     root.set("contact", social);
 }
+
+#endif
