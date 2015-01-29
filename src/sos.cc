@@ -112,6 +112,11 @@ void sos::Array::set(const size_t index, const sos::Base& value)
     array().at(index) = value;
 }
 
+bool sos::Array::empty()
+{
+    return array().empty();
+}
+
 sos::Object::Object()
 : Base(ObjectType)
 {}
@@ -123,6 +128,11 @@ void sos::Object::set(const std::string& key, const sos::Base& value)
 
     keys.push_back(key);
     object().operator[](key) = value;
+}
+
+bool sos::Object::empty()
+{
+    return keys.empty();
 }
 
 sos::Serialize::Serialize()

@@ -120,6 +120,9 @@ namespace sos {
 
         void push(const Base& value);
         void set(const size_t index, const Base& value);
+
+        /** Check if empty */
+        bool empty();
     };
 
     class Object : public Base {
@@ -129,6 +132,9 @@ namespace sos {
         Object();
 
         void set(const std::string& key, const Base& value);
+
+        /** Check if empty */
+        bool empty();
     };
 
     /** Base class for serializers */
