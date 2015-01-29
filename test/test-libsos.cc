@@ -32,6 +32,7 @@ TEST_CASE("Serailize JSON", "[sos][json]")
     "    \"facebook\": true,\n"\
     "    \"linkedin\": false,\n"\
     "    \"dribble\": null,\n"\
+    "    \"twitter\": [],\n"\
     "    \"github\": {\n"\
     "      \"username\": \"pksunkara\",\n"\
     "      \"orgs\": [\n"\
@@ -73,6 +74,7 @@ TEST_CASE("Serialize YAML", "[sos][yaml]")
     "  facebook: true\n"\
     "  linkedin: false\n"\
     "  dribble: null\n"\
+    "  twitter: []\n"\
     "  github:\n"\
     "    username: \"pksunkara\"\n"\
     "    orgs:\n"\
