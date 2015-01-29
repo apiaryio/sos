@@ -13,6 +13,36 @@
 #include "sosYAML.h"
 #include "test.h"
 
+TEST_CASE("Object when empty", "[sos]")
+{
+    sos::Object root;
+
+    REQUIRE(root.empty());
+}
+
+TEST_CASE("Object when not empty", "[sos]")
+{
+    sos::Object root;
+    root.set("user", sos::String("pksunkara"));
+
+    REQUIRE(!root.empty());
+}
+
+TEST_CASE("Array when empty", "[sos]")
+{
+    sos::Array root;
+
+    REQUIRE(root.empty());
+}
+
+TEST_CASE("Array when not empty", "[sos]")
+{
+    sos::Array root;
+    root.push(sos::String("pksunkara"));
+
+    REQUIRE(!root.empty());
+}
+
 TEST_CASE("Serailize JSON", "[sos][json]")
 {
     std::stringstream output;
@@ -32,6 +62,8 @@ TEST_CASE("Serailize JSON", "[sos][json]")
     "    \"facebook\": true,\n"\
     "    \"linkedin\": false,\n"\
     "    \"dribble\": null,\n"\
+    "    \"twitter\": [],\n"\
+    "    \"reddit\": {},\n"\
     "    \"github\": {\n"\
     "      \"username\": \"pksunkara\",\n"\
     "      \"orgs\": [\n"\
@@ -73,6 +105,8 @@ TEST_CASE("Serialize YAML", "[sos][yaml]")
     "  facebook: true\n"\
     "  linkedin: false\n"\
     "  dribble: null\n"\
+    "  twitter: []\n"\
+    "  reddit: {}\n"\
     "  github:\n"\
     "    username: \"pksunkara\"\n"\
     "    orgs:\n"\

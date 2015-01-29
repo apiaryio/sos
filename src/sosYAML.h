@@ -47,11 +47,11 @@ namespace sos {
 
         virtual void array(const Base& value, std::ostream& os, size_t level) {
 
-            if (level > 0) {
-                os << "\n";
-            }
-
             if (!value.array().empty()) {
+
+                if (level > 0) {
+                    os << "\n";
+                }
 
                 size_t i = 0;
 
@@ -66,15 +66,18 @@ namespace sos {
                     process(*it, os, level + 1);
                 }
             }
+            else {
+                os << " []";
+            }
         }
 
         virtual void object(const Base& value, std::ostream& os, size_t level) {
 
-            if (level > 0) {
-                os << "\n";
-            }
-
             if (!value.keys.empty()) {
+
+                if (level > 0) {
+                    os << "\n";
+                }
 
                 size_t i = 0;
 
@@ -90,6 +93,9 @@ namespace sos {
                     os << ":";
                     process(value.object().at(*it), os, level + 1);
                 }
+            }
+            else {
+                os << " {}";
             }
         }
     };
