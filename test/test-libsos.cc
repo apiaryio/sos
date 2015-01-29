@@ -13,6 +13,36 @@
 #include "sosYAML.h"
 #include "test.h"
 
+TEST_CASE("Object when empty", "[sos]")
+{
+    sos::Object root;
+
+    REQUIRE(root.empty());
+}
+
+TEST_CASE("Object when not empty", "[sos]")
+{
+    sos::Object root;
+    root.set("user", sos::String("pksunkara"));
+
+    REQUIRE(!root.empty());
+}
+
+TEST_CASE("Array when empty", "[sos]")
+{
+    sos::Array root;
+
+    REQUIRE(root.empty());
+}
+
+TEST_CASE("Array when not empty", "[sos]")
+{
+    sos::Array root;
+    root.push(sos::String("pksunkara"));
+
+    REQUIRE(!root.empty());
+}
+
 TEST_CASE("Serailize JSON", "[sos][json]")
 {
     std::stringstream output;
