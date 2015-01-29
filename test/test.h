@@ -25,6 +25,7 @@ void build(sos::Object& root) {
     social.set("linkedin", sos::Boolean(false));
     social.set("dribble", sos::Null());
     social.set("twitter", sos::Array());
+    social.set("reddit", sos::Object());
 
     github.set("username", sos::String("pksunkara"));
 
