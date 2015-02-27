@@ -143,6 +143,9 @@ namespace sos {
         /** Constructor */
         Serialize();
 
+        /** Destructor */
+        virtual ~Serialize() {};
+
         /** Process the given value with the serializer logic */
         void process(const Base& value, std::ostream& os, size_t level = 0);
 
