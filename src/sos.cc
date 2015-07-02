@@ -198,3 +198,16 @@ std::string sos::escapeDoubleQuotes(const std::string &input)
 
     return target;
 }
+
+std::string sos::escapeBackslashes(const std::string &input)
+{
+    size_t pos = 0;
+    std::string target(input);
+
+    while ((pos = target.find("\\", pos)) != std::string::npos) {
+        target.replace(pos, 1, "\\\\");
+        pos += 2;
+    }
+
+    return target;
+}

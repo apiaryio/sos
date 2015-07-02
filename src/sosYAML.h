@@ -29,7 +29,8 @@ namespace sos {
 
         virtual void string(const std::string& value, std::ostream& os) {
 
-            std::string normalized = escapeDoubleQuotes(value);
+            std::string normalized = escapeBackslashes(value);
+            normalized = escapeDoubleQuotes(normalized);
             normalized = escapeNewlines(normalized);
 
             os << " " << "\"" << normalized << "\"";
