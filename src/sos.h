@@ -160,6 +160,13 @@ namespace sos {
     };
 
     /**
+     *  \brief  Escape every backslash in input string.
+     *  \param  input   A string to escape its backslashes.
+     *  \return A new string with backslashes escaped.
+     */
+    std::string escapeBackslashes(const std::string& input);
+
+    /**
      *  \brief  Escape every double quote in input string.
      *  \param  input   A string to escape its double quotes.
      *  \return A new string with double quotes escaped.

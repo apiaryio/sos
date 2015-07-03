@@ -46,6 +46,8 @@ void build(sos::Object& root) {
     github.set("orgs", orgs);
     social.set("github", github);
     root.set("contact", social);
+
+    root.set("json", sos::String("{\n    \"text\": \"foo \\\"bar\\\" baz\\n\"\n}\n"));
 }
 
 #endif

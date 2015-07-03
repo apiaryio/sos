@@ -77,7 +77,8 @@ TEST_CASE("Serailize JSON", "[sos][json]")
     "        }\n"\
     "      ]\n"\
     "    }\n"\
-    "  }\n"\
+    "  },\n"\
+    "  \"json\": \"{\\n    \\\"text\\\": \\\"foo \\\\\\\"bar\\\\\\\" baz\\\\n\\\"\\n}\\n\"\n"\
     "}";
 
     sos::SerializeJSON serializer;
@@ -115,7 +116,8 @@ TEST_CASE("Serialize YAML", "[sos][yaml]")
     "        members: 20\n"\
     "      -\n"\
     "        id: \"flatiron\"\n"\
-    "        members: 10";
+    "        members: 10\n"\
+    "json: \"{\\n    \\\"text\\\": \\\"foo \\\\\\\"bar\\\\\\\" baz\\\\n\\\"\\n}\\n\"";
 
     sos::SerializeYAML serializer;
     sos::Object root;
