@@ -131,7 +131,7 @@ namespace sos {
         /** Constructor */
         Object();
 
-        void set(const std::string& key, const Base& value);
+        void set(const std::string& key, const Base& value, bool doNotOverride = false);
 
         /** Check if empty */
         bool empty();
