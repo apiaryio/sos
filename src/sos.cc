@@ -44,7 +44,7 @@ sos::Base& sos::Base::operator=(const sos::Base &rhs)
 sos::KeyValues& sos::Base::object()
 {
     if (!m_object.get())
-        throw "no object key-values set";
+        throw std::logic_error("no object key-values set");
 
     return *m_object;
 }
@@ -52,7 +52,7 @@ sos::KeyValues& sos::Base::object()
 const sos::KeyValues& sos::Base::object() const
 {
     if (!m_object.get())
-        throw "no object key-values set";
+        throw std::logic_error("no object key-values set");
 
     return *m_object;
 }
@@ -60,7 +60,7 @@ const sos::KeyValues& sos::Base::object() const
 sos::Bases& sos::Base::array()
 {
     if (!m_array.get())
-        throw "no array values set";
+        throw std::logic_error("no array values set");
 
     return *m_array;
 }
@@ -68,7 +68,7 @@ sos::Bases& sos::Base::array()
 const sos::Bases& sos::Base::array() const
 {
     if (!m_array.get())
-        throw "no array values set";
+        throw std::logic_error("no array values set");
 
     return *m_array;
 }
@@ -107,7 +107,7 @@ void sos::Array::push(const sos::Base& value)
 void sos::Array::set(const size_t index, const sos::Base& value)
 {
     if (array().size() <= index)
-        throw "not enough array values set";
+        throw std::logic_error("not enough array values set");
 
     array().at(index) = value;
 }
@@ -127,7 +127,7 @@ void sos::Object::set(const std::string& key, const sos::Base& value, bool doNot
 
     if (it != keys.end()) {
         if (doNotOverride) {
-            throw "key already present in the object";
+            throw std::logic_error("key already present in the object");
         }
         else {
             keys.erase(it);
