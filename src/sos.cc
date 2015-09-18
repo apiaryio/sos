@@ -121,10 +121,18 @@ sos::Object::Object()
 : Base(ObjectType)
 {}
 
-void sos::Object::set(const std::string& key, const sos::Base& value)
+void sos::Object::set(const std::string& key, const sos::Base& value, bool doNotOverride)
 {
-    if (std::find(keys.begin(), keys.end(), key) != keys.end())
-        throw "key already present in the object";
+    sos::Keys::iterator it = std::find(keys.begin(), keys.end(), key);
+
+    if (it != keys.end()) {
+        if (doNotOverride) {
+            throw "key already present in the object";
+        }
+        else {
+            keys.erase(it);
+        }
+    }
 
     keys.push_back(key);
     object().operator[](key) = value;

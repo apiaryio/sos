@@ -43,6 +43,17 @@ TEST_CASE("Array when not empty", "[sos]")
     REQUIRE(!root.empty());
 }
 
+TEST_CASE("Override key in object by default", "[sos]")
+{
+	sos::Object root;
+	root.set("user", sos::String("pksunkara"));
+	root.set("user", sos::String("pavan"));
+
+	REQUIRE(root.keys.size() == 1);
+	REQUIRE(root.keys.at(0) == "user");
+	REQUIRE(root.object().operator[]("user").str == "pavan");
+}
+
 TEST_CASE("Serailize JSON", "[sos][json]")
 {
     std::stringstream output;
