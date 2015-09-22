@@ -15,6 +15,7 @@
 #include <ostream>
 #include <algorithm>
 #include <memory>
+#include <stdexcept>
 
 namespace sos {
 
