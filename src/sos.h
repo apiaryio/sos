@@ -133,6 +133,7 @@ namespace sos {
         Object();
 
         void set(const std::string& key, const Base& value, bool doNotOverride = false);
+        void unset(const std::string& key);
 
         /** Check if empty */
         bool empty();
