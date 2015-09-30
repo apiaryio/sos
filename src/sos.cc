@@ -138,6 +138,20 @@ void sos::Object::set(const std::string& key, const sos::Base& value, bool doNot
     object().operator[](key) = value;
 }
 
+void sos::Object::unset(const std::string &key)
+{
+    sos::Keys::iterator it = std::find(keys.begin(), keys.end(), key);
+
+    if (it == keys.end()) {
+        return;
+    }
+
+    sos::KeyValues::iterator valueIt = object().find(key);
+
+    keys.erase(it);
+    object().erase(valueIt);
+}
+
 bool sos::Object::empty()
 {
     return keys.empty();

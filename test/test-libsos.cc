@@ -54,6 +54,21 @@ TEST_CASE("Override key in object by default", "[sos]")
 	REQUIRE(root.object().operator[]("user").str == "pavan");
 }
 
+TEST_CASE("Unset key in object", "[sos]")
+{
+    sos::Object root;
+    root.set("user", sos::String("pksunkara"));
+
+    REQUIRE(root.keys.size() == 1);
+    REQUIRE(root.keys.at(0) == "user");
+    REQUIRE(root.object().operator[]("user").str == "pksunkara");
+
+    root.unset("user");
+    root.unset("ignore");
+
+    REQUIRE(root.keys.empty());
+}
+
 TEST_CASE("Serailize JSON", "[sos][json]")
 {
     std::stringstream output;
