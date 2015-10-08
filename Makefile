@@ -28,6 +28,9 @@ LIB_OBJ = $(BUILD_PATH)/sos.o
 TEST_SRC = $(TEST_SRC_PATH)/test-libsos.cc
 TEST_OBJ = $(BUILD_PATH)/test-libsos.o
 
+OBJECTS = $(LIB_OBJ) $(TEST_OBJ)
+DEPENDS  = $(OBJECTS:.o=.d)
+
 .PHONY: all
 all: libsos.a test-libsos
 
@@ -49,9 +52,11 @@ $(BUILD_PATH)/%.o: $(SRC_PATH)/%.cc
 	$(CXX) $(CXXFLAGS) $(INCLUDES) -MP -MMD -c $< -o $@
 
 $(BUILD_PATH)/%.o: $(TEST_SRC_PATH)/%.cc
-	$(CXX) $(CXXFLAGS) $(TEST_INCLUDES) -MP -MMD -c $< -o $@	
+	$(CXX) $(CXXFLAGS) $(TEST_INCLUDES) -MP -MMD -c $< -o $@
 
 $(LIB_OBJ): | $(BUILD_PATH)
 
 $(BUILD_PATH):
 	mkdir -p $(BUILD_PATH)
+
+-include $(DEPENDS)
