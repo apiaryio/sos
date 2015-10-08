@@ -36,9 +36,23 @@ namespace sos {
             os << "\"" << normalized << "\"";
         }
 
+        /// Prints the given double to the output stream
+        /// Note: Does not print scientific notation
         virtual void number(double value, std::ostream& os) {
 
-            os << value;
+            std::stringstream output;
+            output << std::fixed << value;
+            std::string stringValue = output.str();
+
+            // "std:fixed" output always shows the decimal place and any
+            // leading zero's. Let's trim those out if there are any:
+            size_t position = stringValue.find_last_not_of("0");
+            if (stringValue.at(position) == '.') {
+                --position;
+            }
+            stringValue.resize(position + 1);
+
+            os << stringValue;
         }
 
         virtual void boolean(bool value, std::ostream& os) {
