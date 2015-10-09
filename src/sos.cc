@@ -189,7 +189,7 @@ void sos::Serialize::process(const Base& root, std::ostream& os, size_t level)
         case Base::ObjectType:
             object(root, os, level);
             break;
-            
+
         default:
             break;
     }
