@@ -9,6 +9,7 @@
 #ifndef SOS_JSON_H
 #define SOS_JSON_H
 
+#include <sstream>
 #include "sos.h"
 
 namespace sos {
