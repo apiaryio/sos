@@ -116,6 +116,23 @@ TEST_CASE("Serailize JSON", "[sos][json]")
     REQUIRE(output.str() == expected);
 }
 
+TEST_CASE("Serializing JSON doubles", "[sos][json]")
+{
+    std::stringstream output;
+    std::string expected = \
+    "{\n"\
+    "  \"number\": 5.00\n"\
+    "}";
+
+    sos::Object root;
+    sos::SerializeJSON serializer;
+    root.set("number", sos::Number(5.00));
+
+    serializer.process(root, output);
+
+    REQUIRE(output.str() == expected);
+}
+
 TEST_CASE("Serializing JSON numbers use fixed notation", "[sos][json]")
 {
     std::stringstream output;
