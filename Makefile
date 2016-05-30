@@ -5,7 +5,7 @@ SHELL = /bin/bash
 BUILD_PATH = build
 
 # Flags
-CXXFLAGS = -g -O3 -fPIC -Wall -Werror -Wsign-compare
+CXXFLAGS = -g -O3 -fPIC -Wall -Werror -Wsign-compare -std=c++11
 LDFLAGS = -g -O3 -Wall -Werror
 
 # SOS source directory
