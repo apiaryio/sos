@@ -81,8 +81,8 @@ namespace sos {
         ~Base() {};
 
     private:
-        std::auto_ptr<KeyValues> m_object;
-        std::auto_ptr<Bases> m_array;
+        std::unique_ptr<KeyValues> m_object;
+        std::unique_ptr<Bases> m_array;
     };
 
     class Null : public Base {
